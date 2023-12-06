@@ -15,7 +15,6 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 RUN pip3 install --upgrade pip && \
     pip3 install -U pip setuptools wheel && \
-    pip3 install -U spacy && \
-    python3 -m spacy download en_core_web_trf
+    pip3 install -U spacy
 
 ENTRYPOINT [ "python3" ]
