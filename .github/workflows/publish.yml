@@ -19,9 +19,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - image: 'ghcr.io/hex-runtime:spacy'
+          - image: 'hex-runtime:spacy'
             context: './hex-python/spacy/'
-          - image: 'ghcr.io/hex-runtime:spacy-gpu'
+          - image: 'hex-runtime:spacy-gpu'
             context: './hex-python/spacy/'
 
     # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
@@ -52,4 +52,4 @@ jobs:
           context: ${{ matrix.context }}
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ucrel/${{ matrix.image }}
+          tags: ghcr.io/UCREL/${{ matrix.image }}
