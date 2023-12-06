@@ -5,6 +5,11 @@ Mostly aimed at NLP tasks (for now), these images are designed to be a user-frie
 
 See [the Packages page](https://github.com/UCREL/hex-runtime/pkgs/container/hex-runtime) for details.
 
+## Why Use These Images?
+
+As Hex develops, additional deployment-specific tools will be included into these images, giving you automatic access to them when your own images rebuild.
+Without this, any additional tools/configurations/etc required for Hex will have to be manually installed and configured.
+
 ## Tags
 
 ---
