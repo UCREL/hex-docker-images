@@ -52,4 +52,4 @@ jobs:
           context: ${{ matrix.context }}
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/UCREL/${{ matrix.image }}
+          tags: ghcr.io/ucrel/${{ matrix.image }}
