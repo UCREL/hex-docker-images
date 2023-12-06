@@ -16,11 +16,13 @@ jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        image: [
-          'hex-python/spacy',
-          'hex-python/spacy-gpu'
-        ]
+        include:
+          - image: 'hex-runtime:spacy'
+            context: './hex-python/spacy/'
+          - image: 'hex-runtime:spacy-gpu'
+            context: './hex-python/spacy/'
 
     # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
     permissions:
@@ -47,8 +49,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./${{ matrix.image }}/
+          context: ${{ matrix.context }}
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ucrel/${{ matrix.image }}:latest
-          #tags: user/app:latest
+          tags: ucrel/${{ matrix.image }}
