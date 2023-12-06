@@ -7,8 +7,14 @@ See [the Packages page](https://github.com/UCREL/hex-runtime/pkgs/container/hex-
 
 ## Tags
 
+---
 ### `spacy`
 The [Spacy](https://spacy.io/) pipeline tools, along with Python 3 and associated tooling.
 
+`docker pull ghcr.io/ucrel/hex-runtime:spacy`
+
+---
 ### `spacy-gpu`
 The [Spacy](https://spacy.io/) pipeline tools configured for GPU compute tasks, along with Python 3 and associated tooling.
+
+`docker pull ghcr.io/ucrel/hex-runtime:spacy-gpu`
