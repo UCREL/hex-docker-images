@@ -1,7 +1,7 @@
 FROM --platform=$BUILDPLATFORM ubuntu:22.04
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && apt-get upgrade && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     git \
     build-essential \
     software-properties-common\
@@ -15,6 +15,6 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 RUN pip3 install --upgrade pip && \
     pip3 install -U pip setuptools wheel && \
-    pip3 install -U spacy
+    pip3 install -U 'spacy[cuda11x]'
 
 ENTRYPOINT [ "python3" ]

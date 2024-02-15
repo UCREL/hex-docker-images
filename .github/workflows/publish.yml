@@ -13,16 +13,18 @@ env:
 # There is a single job in this workflow.
 # It's configured to run on the latest available version of Ubuntu.
 jobs:
-  build-and-push-image:
+  build-app-images:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         include:
-          - image: 'hex-runtime:spacy'
-            context: './hex-python/spacy/'
-          - image: 'hex-runtime:spacy-gpu'
-            context: './hex-python/spacy/'
+          - image: 'spacy:latest'
+            context: 'python/spacy/'
+          - image: 'spacy-gpu:latest'
+            context: 'python/spacy/'
+          - image: 'cuda-535-notebook'
+            context: 'jupyter/python-cuda-535'
 
     # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
     permissions:
@@ -54,4 +56,3 @@ jobs:
           push: true
           tags: |
             ghcr.io/ucrel/${{ matrix.image }}
-            ghcr.io/ucrel/${{ matrix.image }}-latest

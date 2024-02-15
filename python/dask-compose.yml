@@ -1,0 +1,9 @@
+version: "3.6"
+services:
+  dask:
+    image: hex-app:dask
+    build: dask/.
+
+  dask-worker:
+    image: hex-app:dask-worker
+    build: dask-worker/.
