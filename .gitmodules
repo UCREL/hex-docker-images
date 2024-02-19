@@ -1,0 +1,3 @@
+[submodule "Pytorch-Lightning"]
+	path = Pytorch-Lightning
+	url = https://github.com/st7ma784/MLSlurmTemplate.git
