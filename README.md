@@ -3,7 +3,7 @@ Docker base images for the Hex distributed compute system.
 
 Mostly aimed at NLP tasks (for now), these images are designed to be a user-friendly baseline to build your code from, both locally and for Hex. 
 
-See [the Packages page](https://github.com/UCREL/hex-runtime/pkgs/container/hex-runtime) for details.
+See [the Packages page](https://github.com/orgs/UCREL/packages?repo_name=hex-app) for details.
 
 ## Why Use These Images?
 
