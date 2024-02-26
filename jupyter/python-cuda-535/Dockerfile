@@ -4,23 +4,37 @@ ENV DEBIAN_FRONTEND noninteractive
 USER root
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+    python3.10-venv \
+    build-essential \
+    python3-dev \
+    curl \
     git \
     vim \
-    build-essential \
-    software-properties-common\
-    python3.10-venv
+    nano-tiny \
+    tzdata \
+    unzip \
+    vim-tiny \
+    openssh-client \
+    less \
+    texlive-xetex \
+    texlive-fonts-recommended \
+    texlive-plain-generic \
+    xclip && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN update-alternatives --install /usr/bin/nano nano /bin/nano-tiny 10
 
 RUN useradd -ms /bin/bash jovyan
+ENV HOME=/home/jovyan
+WORKDIR $HOME
 USER jovyan
-WORKDIR /home/jovyan/work
 
 ENV VIRTUAL_ENV=/home/jovyan/.venv
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-RUN pip3 install --upgrade pip && \
-    pip3 install -U pip setuptools wheel JPype1 jupyter pandas numpy seaborn scipy matplotlib pyNetLogo SALib && \
-    pip3 install -U 'spacy[cuda11x]'
+RUN pip3 install \
+    'jupyterhub==4.*' \
+    'notebook==7.*'
 
-EXPOSE 8888                                           
-ENTRYPOINT ["jupyter", "notebook","--allow-root","--ip=0.0.0.0","--port=8888","--no-browser"]
+CMD ["jupyterhub-singleuser"]
