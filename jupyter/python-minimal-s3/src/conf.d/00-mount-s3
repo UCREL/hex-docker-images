@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if [[ -z "${HEX_S3_KEY}" ]]; then
+    echo "No S3 key, refusing to attempt to mount"
+    exit 0
+fi
+
+if [[ -z "${HEX_S3_SECRET}" ]]; then
+    echo "No S3 secret, refusing to attempt to mount"
+    exit 0
+fi
+
+if [[ -z "${HEX_S3_BUCKET}" ]]; then
+    echo "No S3 bucket, refusing to attempt to mount"
+    exit 0
+fi
+
+if [[ -z "${HEX_S3_MOUNT_PATH}" ]]; then
+    HEX_S3_MOUNT_PATH="/home/jovyan/work"
+    echo "Using default s3 work path"
+fi
+
+
+cat >/home/jovyan/.s3auth <<EOL
+${HEX_S3_KEY}:${HEX_S3_SECRET}
+EOL
+chmod 600 /home/jovyan/.s3auth
+
+echo s3fs ${HEX_S3_BUCKET} ${HEX_S3_MOUNT_PATH} -o passwd_file=/home/jovyan/.s3auth -o url=http://ucrel-hex-store.scc.lancs.ac.uk:3900/ -o use_path_request_style
+
+cp /opt/launch/res/README.md
