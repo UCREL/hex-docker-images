@@ -25,6 +25,8 @@ jobs:
             context: 'python/spacy/'
           - image: 'cuda-535-notebook'
             context: 'jupyter/python-cuda-535'
+          - image: 'python-minimal-s3'
+            context: 'jupyter/python-minimal-s3'
 
     # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
     permissions:
